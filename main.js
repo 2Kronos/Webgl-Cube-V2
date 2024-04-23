@@ -260,7 +260,7 @@ function draw() {
     gl.drawArrays(gl.TRIANGLE_FAN, 12, 4);
     gl.drawArrays(gl.TRIANGLE_FAN, 16, 4);
     gl.drawArrays(gl.TRIANGLE_FAN, 20, 4);
-    //gl.drawArrays(gl.TRIANGLE_FAN, 0, 25);
+    // gl.drawArrays(gl.TRIANGLE_FAN, 0, 24);
     gl.enable(gl.DEPTH_TEST);
    
 
