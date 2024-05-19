@@ -5,8 +5,6 @@
 1) This is code is for a cube that is able to spins in the X, Y, Z simultaneously.
 
 
-## Erros.
-There is a hole on the bottom of the cube.
 
 ## Contributing.
 
