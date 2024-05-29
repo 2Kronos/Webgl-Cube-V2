@@ -209,15 +209,12 @@ const translatedMatrix = [
 
 let theta = Math.PI / 1;
 
- 
 draw();
-
 function draw() {
 
     gl.clearColor(0, 0, 0, 0); // Set clear color
     gl.clear(gl.COLOR_BUFFER_BIT);
     theta = theta + Math.PI / 500;
-
 
     //Step5 make the matrix for each rotation this must be in the animation loop funciton
     const matrixX = [
@@ -246,7 +243,7 @@ function draw() {
     var matrixXZ = multiplyMatrices(matrixX, matrixZ);
 
     //Step7 Send the final matrix to the uniform in the vertexShader 
-    
+
     gl.uniformMatrix4fv(uMatrix, false, matrixXYZ); //All rotations
         
     gl.uniformMatrix4fv(uScaleMatrix, false, scaledMatrix);
@@ -261,8 +258,5 @@ function draw() {
    
     gl.enable(gl.DEPTH_TEST);
    
-
-  
-
     window.requestAnimationFrame(draw);
 }
