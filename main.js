@@ -7,41 +7,44 @@ if (!gl) {
 
 //Vertices
 const vertexData = [
-    //FRONT face
-    -0.5, -0.5, 0,      //III
-    -0.5, 0.5, 0,       //II same as top
-    0.5, 0.5, 0,        //I same as top 
-    0.5, -0.5, 0,       //IV
+    // FRONT face
+0.5, 0.5, 0,    // I
+-0.5, 0.5, 0,   // II
+-0.5, -0.5, 0,  // III
+0.5, -0.5, 0,   // IV
 
-    // // Top face (Green)
-    -0.5, 0.5, 0,       //II From front
-    -0.5, 0.5, 1,       //II new point with new z value(into screen)
-    0.5, 0.5, 1,        //I new point with new z value(into screen)
-    0.5, 0.5, 0,        //I From front
+// BOTTOM face (Green)
+0.5, -0.5, 1,   // IV
+-0.5, -0.5, 1,  // III
+-0.5, -0.5, 0,  // III
+0.5, -0.5, 0,   // IV
 
-    // //Right face (Blue)
-    0.5, -0.5, 0,       //IV From front
-    0.5, 0.5, 0,        //I From front
-    0.5, 0.5, 1,        //I new point with new z value(into screen)
-    0.5, -0.5, 1,       //IV new point with new z value(into screen)
+// LEFT face (Blue)
+-0.5, -0.5, 1,  // III
+-0.5, 0.5, 1,   // II
+-0.5, 0.5, 0,   // II
+-0.5, -0.5, 0,  // III
 
-    // //Back face (Yellow) Same as front but with new z value
-    0.5, -0.5, 1,       //IV
-    0.5, 0.5, 1,        //I 
-    -0.5, 0.5, 1,       //II
-    -0.5, -0.5, 1,      //III 
+// TOP face (Yellow)
+-0.5, 0.5, 1,   // II
+0.5, 0.5, 1,    // I
+0.5, 0.5, 0,    // I
+-0.5, 0.5, 0,   // II
 
-   //  //Bottom face (Purple) 
-    -0.5, -0.5, 1,      //III same as front but with z value
-    -0.5, -0.5, 0,      // III from front
-    0.5, -0.5, 0,       //IV from front
-    0.5, -0.5, 1,       //IV same as front but with z value
+// BACK face
+0.5, 0.5, 1,    // I
+-0.5, 0.5, 1,   // II
+-0.5, -0.5, 1,  // III
+0.5, -0.5, 1,   // IV
 
-    // //Left face (Orange)
-    -0.5, -0.5, 1,      //III same as front but with z value
-    -0.5, 0.5, 1,       //II same as front but with z value
-    -0.5, 0.5, 0,       //II from front
-    -0.5, -0.5, 0,
+// RIGHT face (Purple)
+0.5, 0.5, 1,    // I
+0.5, 0.5, 0,    // I
+0.5, -0.5, 0,   // IV
+0.5, -0.5, 1    // IV
+
+
+
 ];
 
 const colorData = [
@@ -239,28 +242,23 @@ function draw() {
     //Step6 use the multiplyMatrix function to multiply all your matrices together
     var matrixXY = multiplyMatrices(matrixX, matrixY);
     var matrixXYZ = multiplyMatrices(matrixXY, matrixZ);
+    var matrixYZ = multiplyMatrices(matrixY, matrixZ);
+    var matrixXZ = multiplyMatrices(matrixX, matrixZ);
 
     //Step7 Send the final matrix to the uniform in the vertexShader 
     
-        //just uncomment 1 of the gl.uniformMatrix4fv lines
     gl.uniformMatrix4fv(uMatrix, false, matrixXYZ); //All rotations
-    // gl.uniformMatrix4fv(uMatrix, false, matrixX); //Just X
-    // gl.uniformMatrix4fv(uMatrix, false, matrixY); //Just Y
-    // gl.uniformMatrix4fv(uMatrix, false, matrixZ); //Just Z
-    // gl.uniformMatrix4fv(uMatrix, false, matrixXY); //Just X and Y
         
     gl.uniformMatrix4fv(uScaleMatrix, false, scaledMatrix);
     gl.uniformMatrix4fv(uTranslateMatrix, false, translatedMatrix);
    
-
-
     gl.drawArrays(gl.TRIANGLE_FAN, 0, 4);
     gl.drawArrays(gl.TRIANGLE_FAN, 3, 4);
     gl.drawArrays(gl.TRIANGLE_FAN, 8, 4);
     gl.drawArrays(gl.TRIANGLE_FAN, 12, 4);
     gl.drawArrays(gl.TRIANGLE_FAN, 16, 4);
     gl.drawArrays(gl.TRIANGLE_FAN, 20, 4);
-    // gl.drawArrays(gl.TRIANGLE_FAN, 0, 24);
+   
     gl.enable(gl.DEPTH_TEST);
    
 
